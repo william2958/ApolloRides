@@ -1,0 +1,109 @@
+<div class="container">
+
+	<div class="row">
+		<img (click)="back()" class="backIcon svgIcon" src="images/back.svg"/>
+		<div class="price">${{trip_details.price}}</div>
+	</div>
+
+	<div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
+
+	<h1>Trip Details</h1>
+	
+	<div class="row trip-details">
+		<div class="col-sm-6 left-side">
+			From: <span class="detail">{{trip_details.from_metadata}}</span>
+			<div class="location-detail">
+				{{trip_details.from_city}}, {{trip_details.from_state}}
+			</div>
+		</div>
+		<div class="col-sm-6 right-side">
+			To: <span class="detail">{{trip_details.from_metadata}}</span>
+			<div class="location-detail">
+				{{trip_details.from_city}}, {{trip_details.from_state}}
+			</div>
+		</div>
+	</div>
+
+	<div class="row trip-details">
+		<div class="col-sm-6 left-side">
+			At: <span class="detail">{{trip_details.date*1000 | date : 'jm'}}</span>
+			<div class="location-detail">
+				{{trip_details.date*1000 | date : 'fullDate'}}
+			</div>
+		</div>
+		<div class="col-sm-6 right-side">
+			Spaces Available: <span class="detail">{{trip_details.spaces}}</span>
+		</div>
+	</div>
+
+	<div class="row trip-details trip-description" *ngIf="trip_details.trip_details">
+		Trip Details: <span class="detail">{{trip_details.trip_details}}</span>
+	</div>
+
+	<div class="button-row" *ngIf="!expired">
+		<button (click)="confirmCancel()" class="warning-brand-button">Cancel Trip</button>
+	</div>
+
+	<div class="selection-bar row">
+		<div class="col-xs-6 selection-option1" [ngClass]="{'selected': requests }" (click)="requests = true">
+			Requests ({{user_requests.length}})
+		</div>
+		<div class="col-xs-6 selection-option2" [ngClass]="{'selected': !requests }" (click)="requests = false">
+			Accepted ({{accepted_users.length}})
+		</div>
+	</div>
+
+	<div *ngIf="requests">
+		<div class="row user-list" *ngFor="let user of user_requests">
+			<div class="col-xs-6">
+				Name: <span class="detail">{{user.first_name}} {{user.last_name}}</span>
+				<a (click)="showContact(user)">Contact Information</a>
+			</div>
+			<div class="col-xs-6 right-list">
+				<div class="accept-rider" (click)="confirmAccept(user)">Accept Rider</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="!requests">
+		<div class="row user-list" *ngFor="let user of accepted_users">
+			<div class="col-xs-6">
+				Name: <span class="detail">{{user.first_name}} {{user.last_name}}</span>
+				<a (click)="showContact(user)">Contact Information</a>
+			</div>
+			<div class="col-xs-6 right-list">
+				Phone Number: <span class="phone_number">{{user.phone_number}}</span>
+				<a class="facebook" [href]="user.facebook_link">Facebook</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<simple-modal color='red' #confirmCancelModal closeOnBodyClick='false' elementId="confirmCancelModal" title="Cancel this listing?">
+  <p class="confirm-description">Are you sure you want to delete this trip posting?</p>
+  <div class="button-row">
+  	<button class="warning-brand-button" (click)="cancelTrip()">Delete</button>
+  </div>
+</simple-modal>
+
+<simple-modal color='red' #confirmCancelUsersModal closeOnBodyClick='false' elementId="confirmCancelUsersModal" title="Cancel this listing?">
+  <p class="confirm-description">Are you sure you want to delete this trip posting?</p>
+  <p class="confirm-description">You have already accepted users! They will be notified if this trip is cancelled.</p>
+  <div class="button-row">
+  	<button class="warning-brand-button" (click)="cancelTrip()">Delete</button>
+  </div>
+</simple-modal>
+
+<simple-modal #confirmRequestModal closeOnBodyClick='false' elementId="confirmRequestModal" title="Confirm this request?" bodyHeight='small'>
+  <p class="confirm-description">Are you sure you want to accept {{currentUser?.first_name}} {{currentUser?.last_name}} as a passenger?</p>
+  <div class="button-row">
+  	<button class="secondary-brand-button" (click)="accept()">Confirm</button>
+  </div>
+</simple-modal>
+
+<simple-modal color='blue' #contactModal closeOnBodyClick='false' elementId="contactModal" title="{{currentUser?.first_name}} {{currentUser?.last_name}}" bodyHeight='small'>
+  <p class="confirm-description">Phone Number: {{currentUser?.phone_number}}</p>
+  <a [href]="currentUser?.facebook_link" class="confirm-description">Facebook</a>
+  <p class="confirm-description">Email: {{currentUser?.email}}</p>
+</simple-modal>

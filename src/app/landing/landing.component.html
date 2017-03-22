@@ -1,0 +1,27 @@
+<div class="landing_page">
+  <div class="find_a_trip">
+    <h1>Find A Ride</h1>
+
+    <form #searchForm="ngForm" novalidate>
+      <div class="form-group">
+        <em *ngIf="(searchForm.form.get('fromLocation')?.invalid && (searchForm.form.get('fromLocation')?.touched || mouseoverForm))">Required</em>
+        <input (ngModel)="fromLocation" name="fromLocation" id="fromLocation" type="text" placeholder="From: (city)" required/>
+      </div>
+
+      <div class="form-group">
+        <em *ngIf="(searchForm.form.get('toLocation')?.invalid && (searchForm.form.get('toLocation')?.touched || mouseoverForm))">Required</em>
+        <input (ngModel)="toLocation" name="toLocation" id="toLocation" type="text" placeholder="To: (city)" required/>
+      </div>
+
+      <div class="form-group">
+        <em id="date-error" *ngIf="(searchForm.form.get('date')?.invalid && (searchForm.form.get('date')?.touched || mouseoverForm))">Required</em>
+        <input class="date" (ngModel)="date" name="date" id="date" type="date" placeholder="Date" required/>
+      </div>
+
+      <button (click)="checkError(searchForm)" type="submit" class="secondary-brand-button">Search</button>
+    </form>
+  </div>
+  <div class="create-listing">
+    Or <a class="create-listing-link" [routerLink]="['trip', 'createtrip']">Create a listing now.</a>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+nav {
+	box-shadow: 0px 1px 3px #2E7D32;
+}
+
+.loggedInOptions {
+	margin-top: 20px;
+}
+
+li > a {
+	display: inline;
+	font-weight: bold;
+	font-family: 'Open Sans';
+	color: #2E7D32;
+}
+
+.mat-input-container {
+	display: block;
+}
+.mat-input-underline {
+	position: relative;
+}
+
+button {
+	height: 38px;
+	margin-top: 10px;
+	margin-left: 5px;
+	font-family: 'Open Sans';
+	box-shadow: 0px 1px 3px #2E7D32, 0px 1px 3px #2E7D32;
+	letter-spacing: 1.2px;
+}
+
+.navbar {
+	height: 60px;
+	background-color: #9CCC65;
+	margin-bottom: 0px;
+	box-shadow: 0px 1px 3px #2E7D32;
+	border: 0;
+}
+
+.navbar-brand {
+	height: 60px;
+	padding-top: 18px;
+	font-size: 28px;
+	color: white;
+}
+
+.navbar-brand:hover {
+	color: white;
+}
+
+.form-group {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-group > a {
+	float: right;
+	margin-top: -5px;
+}
+
+md-input-container {
+	margin-top: 35px;
+	font-size: 1.1em;
+}
+
+.button-row {
+	text-align: center;
+	margin-top: 30px;
+	clear: both;
+}
+
+.invalid-login {
+	color: #F44336;
+	text-align: center;
+}
+
+.signup-link {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.login-header {
+	text-align: center;
+}
+
+.small-button-row {
+	text-align: right;
+	padding-right: 8px;
+}
+
+/* LARGE DEVICES */
+@media (min-width: 1200px) {
+}
+
+/* MEDIUM DEVICES */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* SMALL DEVICES */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* EXTRA SMALL SCREENS */
+@media (max-width: 767px) {
+
+	li > a {
+		display: block;
+		text-align: center;
+		font-size: 18px;
+		margin-bottom: 10px;
+	}
+
+	ul {
+		background-color: #fff;
+		opacity: 0.9;
+		margin-top: 0px;
+		z-index: 999;
+	}
+
+	.inverse-brand-button {
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 0.95em;
+	}
+
+	.brand-button {
+		padding-left: 14px;
+		padding-right: 14px;
+		font-size: 0.95em;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

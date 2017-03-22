@@ -1,0 +1,57 @@
+.row {
+	letter-spacing: 2px;
+}
+
+.left-side {
+	text-align: left;
+	font-size: 1.4em;
+}
+
+.right-side {
+	text-align: right;
+	font-size: 1.5em;
+}
+
+.price_number {
+	color: green;
+	font-size: 1.1em;
+}
+
+.spaces_number {
+	color: green;
+	font-size: 1.2em;
+}
+
+hr {
+	margin-top: 5px;
+}
+
+.location_metadata {
+	color: #9B9B9B;
+	text-transform: capitalize;
+}
+
+.location_city {
+	font-size: 0.7em;
+	margin-left: 5px;
+	text-transform: capitalize;
+}
+
+.date {
+	color: #9B9B9B;
+}
+
+.driver_name {
+	font-size: 0.7em;
+}
+
+.monthdate {
+	font-size: 0.6em;
+}
+
+/* EXTRA SMALL SCREENS */
+@media (max-width: 767px) {
+	.row {
+		font-size: 0.8em;
+	}
+}

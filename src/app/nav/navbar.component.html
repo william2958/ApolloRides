@@ -1,0 +1,173 @@
+<div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" [routerLink]="['/']" >RideSplit</a>
+      <button *ngIf="currentUser" id="navbarToggle" type="button" class="navbar-toggle collapsed visible-xs" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+      </button>
+      <div class="small-button-row visible-xs" *ngIf="!currentUser">
+        <button class="inverse-brand-button" (click)="showSignupModalFunction()">SignUp</button>
+        <button class="brand-button" (click)="showLoginModalFunction()">Login</button>
+      </div>
+    </div>
+
+    <div class="hidden-xs">
+      <div class="navbar-header navbar-right">
+        <ul class="nav navbar-nav">
+          <li *ngIf="!currentUser">
+            <button class="inverse-brand-button" (click)="showSignupModalFunction()">SignUp</button>
+            <button class="brand-button" (click)="showLoginModalFunction()">Login</button>
+          </li>
+          <li *ngIf="currentUser" class="loggedInOptions">
+            <a [routerLink]="['dashboard']">My Rides</a>
+            <a [routerLink]="['trip', 'createtrip']">Create Trip</a>
+            <a [routerLink]="['dashboard', 'profile']">{{currentUser.first_name}}</a>
+            <a [routerLink]="['/']" (click)="logout()">Log Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="visible-xs" *ngIf="currentUser">
+    <div id="collapsable-nav" class="collapse navbar-collapse" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+      <ul id="nav-list" class="nav navbar-nav">
+        <li class="nav-item nav-item-text" [routerLink]="['dashboard']">
+          <a class="nav-item-text">
+            My Rides
+          </a>
+        </li>
+        <li class="nav-item nav-item-text" [routerLink]="['trip', 'createtrip']">
+          <a class="nav-item-text">
+            Create Trip
+          </a>
+        </li>
+        <li class="nav-item nav-item-text visible-xs" [routerLink]="['dashboard', 'profile']">
+          <a class="nav-item-text">
+            {{currentUser.first_name}}
+          </a>
+        </li>
+        <li class="nav-item nav-item-text visible-xs" [routerLink]="['/']" (click)="logout()">
+          <a class="nav-item-text">
+            Log Out
+          </a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<!-- Sign Up Modal -->
+<simple-modal closeOnBodyClick='false' elementId="signUpModal" #signupModal title="Sign Up" bodyHeight='large'>
+  <div *ngIf="signupInvalid" class="error-message">{{formErrorMessage}}</div>
+  <div *ngIf="signupInvalid" class="error-message">Invalid Signup Info</div>
+  <div *ngIf="passwordMatch" class="error-message">Passwords do not match!</div>
+  <form #signupForm="ngForm" novalidate>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="first_name" name="first_name" id="first_name" type="text" placeholder="{{firstNamePlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="last_name" name="last_name" id="last_name" type="text" placeholder="{{lastNamePlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="email" name="email" id="email" type="text" placeholder="{{emailPlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="password" name="password" id="password" type="password" placeholder="{{passwordPlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="password_confirm" name="password_confirm" id="password_confirm" type="password" placeholder="{{confirmPasswordPlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="phone_number" name="phone_number" id="phone_number" type="text" placeholder="{{phonePlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="facebook_link" name="facebook_link" id="facebook_link" type="text" placeholder="{{facebookPlaceholder}}" required/>
+      </md-input-container>
+    </div>
+
+    <div class="button-row">
+      <button (click)="signup(signupForm)" type="submit" class="brand-button login-button">Sign Up</button>
+    </div>
+  </form>
+</simple-modal>
+
+<!-- Normal Login Screen -->
+<simple-modal closeOnBodyClick='false' elementId="loginModal" #loginModal title="Log In">
+  <div *ngIf="loginInvalid" class="error-message">{{formErrorMessage}}</div>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" novalidate>
+    <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="userName" name="userName" id="userName" type="text" placeholder="email" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>
+        <input mdInput (ngModel)="password" name="password" id="password" type="password" placeholder="Password" required/>
+      </md-input-container>
+      <a (click)="forgotPasswordRedirect()">Forgot my password</a>
+    </div>
+
+    <div class="button-row">
+      <button [disabled]="loginForm.invalid" type="submit" class="brand-button login-button">Login</button>
+    </div>
+  </form>
+</simple-modal>
+
+<!-- Guarded Login Screen -->
+<simple-modal closeOnBodyClick='false' elementId="loginGuardModal" #loginGuardModal title="Log In" bodyHeight="medium">
+  <h1 class="login-header">You must log in first!</h1>
+  <div *ngIf="loginInvalid" class="error-message">{{formErrorMessage}}</div>
+  <form #loginGuardForm="ngForm" (ngSubmit)="login(loginGuardForm.value)" novalidate>
+      <div class="form-group">
+      <md-input-container>        
+        <input mdInput (ngModel)="userName" name="userName" id="userName" type="text" placeholder="email" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container>
+        <input mdInput (ngModel)="password" name="password" id="password" type="password" placeholder="Password" required/>
+      </md-input-container>
+      <a (click)="forgotPasswordRedirect()">Forgot my password</a>
+    </div>
+
+    <div class="button-row">
+      <button [disabled]="loginGuardForm.invalid" type="submit" class="brand-button login-button">Login</button>
+    </div>
+  </form>
+  <div class="signup-link">
+    Or <a (click)="signupRedirect()">Create an account</a> now.
+  </div>
+</simple-modal>
+
+<!-- Forgot Password Screen -->
+<simple-modal closeOnBodyClick='false' elementId="forgotPasswordModal" #forgotPasswordModal title="Request Password Reset">
+  <div *ngIf="forgotPasswordEmailInvalid" class="error-message">Invalid Email!</div>
+  <form #forgotPasswordForm="ngForm" (ngSubmit)="forgotPassword(forgotPasswordForm.value)" novalidate>
+    <div class="form-group">
+      <md-input-container>
+        <input mdInput (ngModel)="email" name="email" id="email" type="text" placeholder="Email" required/>
+      </md-input-container>
+    </div>
+
+    <div class="button-row">
+      <button [disabled]="forgotPasswordForm.invalid" type="submit" class="brand-button login-button">Request</button>
+    </div>
+  </form>
+</simple-modal>

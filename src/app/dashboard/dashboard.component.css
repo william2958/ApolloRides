@@ -1,0 +1,72 @@
+.selection-bar {
+	margin-top: 15px;
+	border-bottom: 1px solid #339D57;
+	cursor: pointer;
+}
+
+.selection-option1 {
+	text-align: center;
+	font-weight: 400;
+	letter-spacing: 1.5px;
+	font-size: 1.3em;
+	border-right: 1px solid #339D57;
+	padding-bottom: 13px;
+	padding-top: 5px;
+}
+
+.selection-option2 {
+	text-align: center;
+	font-weight: 400;
+	letter-spacing: 1.5px;
+	font-size: 1.3em;
+	padding-bottom: 13px;
+	padding-top: 5px;
+}
+
+.selected {
+	color: #4CAF50;
+	border-bottom: 2px solid #339D57;
+}
+
+h5 {
+	font-size: 1.8em;
+	margin-top: 25px;
+}
+
+hr {
+	margin-top: 5px;
+}
+
+.list-row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.confirm-description {
+	font-size: 1.2em;
+	text-align: center;
+	margin-top: 25px;
+}
+
+.confirm-description > p {
+	margin-top: 10px;
+}
+
+.confirm-description > button {
+	margin-top: 15px;
+}
+
+.no-trips {
+	text-align: center;
+	margin-top: 45px;
+	font-size: 1.5em;
+}
+
+.find-trip-link {
+	color: #005FB5;
+	text-decoration: none;
+}
+
+.fin-trip-link:hover {
+	color: #005FB5;
+}

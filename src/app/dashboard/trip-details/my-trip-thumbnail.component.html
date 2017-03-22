@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-xs-6 left-side">
+		<div class="trip-detail">
+			Depart: <span class="detail">{{trip.date*1000 | date : 'yMdjm'}}</span>
+		</div>
+		<div class="trip-detail">
+			Destination: <span class="detail">{{trip.to_city}}</span>
+		</div>
+		<div class="trip-detail">
+			From: <span class="detail">{{trip.from_city}}</span>
+		</div>
+	</div>
+	<div class="col-xs-6 right-side">
+		<div class="trip-detail">
+			Price: <span class="price detail">${{trip.price}}</span>
+		</div>
+		<div *ngIf="request && !accepted && !expired" class="trip-detail cancel" (click)="cancel()">
+			CANCEL REQUEST
+		</div>
+		<div (click)="showDetails()" *ngIf="!request && !accepted && !expired" class="trip-detail requests">
+			Requests: ({{trip.user_requests?.length}})
+		</div>
+		<div (click)="showDetails()" *ngIf="accepted && !expired" class="trip-detail requests">
+			Contact Driver
+		</div>
+		<a (click)="showDetails()" class="view-trip">View Trip</a>
+	</div>
+</div>
+<hr>

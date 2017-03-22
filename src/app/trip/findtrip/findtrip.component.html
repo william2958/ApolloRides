@@ -1,0 +1,69 @@
+<div class="container">
+
+	<div class="row">
+		<form #findTripForm="ngForm" (ngSubmit)="search(findTripForm.value)" novalidate>
+			
+			<div class="form-group col-sm-2 col-xs-6">
+				<md-input-container>
+					<input mdInput [(ngModel)]="fromLocation" name="fromLocation" id="fromLocation" type="text" placeholder="From" required/>
+				</md-input-container>
+			</div>
+
+			<div class="form-group col-sm-2 col-xs-6">
+				<md-input-container>
+					<input mdInput [(ngModel)]="toLocation" name="toLocation" id="toLocation" type="text" placeholder="Destination" required/>
+				</md-input-container>
+			</div>
+
+			<div class="form-group col-sm-4 col-xs-6 date-group">
+				<md-input-container>
+					<input mdInput [(ngModel)]="date" name="date" id="date" type="date" placeholder="Date" required/>
+				</md-input-container>
+			</div>
+
+			<div class="form-group col-sm-2 col-xs-6 sort-by-group">
+				<md-select placeholder="Sort By:" [(ngModel)]="sortByOption" name="sort">
+					<md-option [value]="time" (click)="reSort()">Time</md-option>
+					<md-option [value]="price" (click)="reSort()">Price</md-option>
+					<md-option [value]="spots" (click)="reSort()">Spots</md-option>
+				</md-select>
+			</div>
+
+			<div class="button-row col-sm-2 col-xs-12">
+				<button [disabled]="findTripForm.invalid" type="submit" class="brand-button login-button">Search</button>
+			</div>
+			
+		</form>
+	</div>
+
+	<hr>
+
+	<div *ngIf="todays_trips.length > 0">
+		<h2>Trips on {{searchDate | date: 'fullDate'}}</h2>
+		<hr>
+		<div *ngFor="let trip of todays_trips">
+			<trip-thumbnail showDate="false" [trip]="trip" [routerLink]="[trip.id]"></trip-thumbnail>
+		</div>
+	</div>
+
+	<div *ngIf="future_trips.length > 0">
+		<h2>Trips after searched date</h2>
+		<hr>
+		<div *ngFor="let trip of future_trips">
+			<trip-thumbnail showDate="true" [trip]="trip" [routerLink]="[trip.id]"></trip-thumbnail>
+		</div>
+	</div>
+
+	<div *ngIf="yesterday_trips.length > 0">
+		<h2>Trips before searched date</h2>
+		<hr>
+		<div *ngFor="let trip of yesterday_trips">
+			<trip-thumbnail showDate="true" [trip]="trip" [routerLink]="[trip.id]"></trip-thumbnail>
+		</div>
+	</div>
+
+	<div *ngIf="trips.length == 0" class="no-results">
+		There are no trips that meet your search criteria!
+	</div>
+
+</div>

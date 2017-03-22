@@ -1,0 +1,94 @@
+<div *ngIf="!edit_mode">
+	<h1>{{currentUser.first_name}} {{currentUser.last_name}}</h1>
+
+	<h2><span class="contact-info-title">Contact Info</span></h2>
+
+  <div class="personal_details">
+  	<div class="contact-info row">
+  		Facebook: <a>{{currentUser.facebook_link}}</a>
+  	</div>
+
+  	<div class="contact-info row">
+  		Email: {{currentUser.email}}
+  	</div>
+
+  	<div class="contact-info row">
+  		Phone Number: {{currentUser.phone_number | phone}}
+  	</div>
+  </div>
+
+  
+    <div *ngIf="currentUser.car_model">
+
+      <h2><span class="contact-info-title">Driver Details</span></h2>
+
+      <div class="personal_details">
+
+        <h4>Driver Rating: {{currentUser.driver_rating}}</h4>
+
+        <div class="contact-info row">
+          License Plate: {{currentUser?.license_plate}}
+        </div>
+
+        <div class="contact-info row">
+          Car Model: {{currentUser?.car_model}}
+        </div>
+      </div>
+
+    </div>
+ 
+  
+
+  <div class="button-row">
+  	<button class="secondary-brand-button" (click)="edit()">
+  		EDIT
+  	</button>
+  </div>
+</div>
+
+<div *ngIf="edit_mode">
+	<form #profileForm="ngForm" novalidate>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group left-side">
+          <md-input-container class="name-input">        
+            <input mdInput [(ngModel)]="first_name" name="first_name" id="first_name" type="text" placeholder="{{firstNamePlaceholder}}" required/>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-sm-6 right-side">
+        <div class="form-group">
+          <md-input-container class="name-input">        
+            <input mdInput [(ngModel)]="last_name" name="last_name" id="last_name" type="text" placeholder="{{lastNamePlaceholder}}" required/>
+          </md-input-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <md-input-container class="user-detail-input">        
+        <input mdInput [(ngModel)]="phone_number" name="phone_number" id="phone_number" type="text" placeholder="{{phonePlaceholder}}" required/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container class="user-detail-input">        
+        <input mdInput [(ngModel)]="facebook_link" name="facebook_link" id="facebook_link" type="text" placeholder="{{facebookPlaceholder}}" required/>
+      </md-input-container>
+    </div>
+
+    <div class="form-group">
+      <md-input-container class="user-detail-input">        
+        <input mdInput [(ngModel)]="car_model" name="car_model" id="car_model" type="text" placeholder="Car Model"/>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container class="user-detail-input">        
+        <input mdInput [(ngModel)]="license" name="license" id="license" type="text" placeholder="License Plate"/>
+      </md-input-container>
+    </div>
+
+    <div class="button-row">
+		  <button class="warning-brand-button" (click)="cancel()">Cancel</button>
+		  <button class="secondary-brand-button" (click)="checkError(profileForm)">Save</button>
+	  </div>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-xs-6 left-side">
+		<p>Depart: 
+			<span class="date">{{hours}}:{{minutes}} {{pm}}</span> 
+			<span *ngIf="showDate=='true'" class="monthdate">{{date | date: 'MMM dd'}}</span>
+		</p>
+
+		<p>From: <span class="location_metadata">{{trip.from_metadata}}<span class="location_city">{{trip.from_city}}</span></span></p>
+
+		<p>To: <span class="location_metadata">{{trip.to_metadata}}<span class="location_city">{{trip.to_city}}</span></span></p>
+
+	</div>
+	<div class="col-xs-6 right-side">
+		<p>Price: <span class="price_number">${{trip.price}}</span></p>
+		<p>Spaces: <span class="spaces_number">{{trip.spaces}}</span></p>
+		<p class="driver_name">Driver: <span class="driver">{{trip.driver}}</span></p>
+	</div>
+</div>
+<hr>

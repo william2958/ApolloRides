@@ -1,0 +1,103 @@
+<div class="container">
+
+	<div class="row">
+		<img  (click)="back()" class="backIcon svgIcon" src="images/back.svg"/>
+		<div class="price">${{trip.price}}</div>
+	</div>
+
+	<div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
+
+	<h1>Trip Details</h1>
+
+	<div class="row detail-row">
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3 left-side">
+			From:
+		</div>
+		<div class="col-sm-6 right-side">
+			<div class="trip-meta">{{trip.from_metadata}}</div>
+			<div class="trip-details">{{trip.from_city}}, {{trip.from_state}}</div>
+		</div>
+	</div>
+
+	<div class="row detail-row">
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3 left-side">
+			To:
+		</div>
+		<div class="col-sm-6 right-side">
+			<div class="trip-meta">{{trip.to_metadata}}</div>
+			<div class="trip-details">{{trip.to_city}}, {{trip.to_state}}</div>
+		</div>
+	</div>
+
+	<div class="row detail-row">
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3 left-side">
+			At:
+		</div>
+		<div class="col-sm-6 right-side">
+			<div class="trip-details">{{trip.date | date : 'fullDate'}}</div>
+		</div>
+	</div>
+
+	<div class="row detail-row" *ngIf="trip.trip_details">
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3 left-side">
+			Trip Details:
+		</div>
+		<div class="col-sm-6 right-side">
+			<div class="trip-details">{{trip.trip_details}}</div>
+		</div>
+	</div>
+
+	<div class="row detail-row">
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3 left-side">
+			Driver:
+		</div>
+		<div class="col-sm-6 right-side">
+			<div class="trip-meta">{{driver.first_name}} {{driver.last_name}}</div>
+			<div class="trip-details">Rating: {{driver.rating}}</div>
+			<div *ngIf="driver?.facebook_link" class="trip-details"><a [href]="driver?.facebook_link">Facebook</a></div>
+			<div *ngIf="driver?.phone_number" class="trip-details">Phone number: {{driver?.phone_number}}</div>
+			<div *ngIf="driver?.email" class="trip-details">Email: {{driver?.email}}</div>
+		</div>
+	</div>
+
+	<div class="row detail-row">
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3 left-side">
+			Trip Id:
+		</div>
+		<div class="col-sm-6 right-side">
+			<div class="trip-id">{{trip.id}}</div>
+		</div>
+	</div>
+
+	<div class="button-row" *ngIf="!expired">
+		<button (click)="confirmCancel()" class="warning-brand-button">Cancel Request</button>
+	</div>
+
+</div>
+
+
+
+<simple-modal #confirmModal closeOnBodyClick='false' elementId="confirmModal" title="Confirm this Request?" color='red'>
+	<div class="confirm-description">
+		<p>Are you sure you want to cancel this request?</p>
+		<button (click)="cancelRequest()" class="warning-brand-button">Confirm Request</button>
+	</div>
+</simple-modal>

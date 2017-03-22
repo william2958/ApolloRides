@@ -1,0 +1,78 @@
+.button-row {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.warning-brand-button {
+	margin-right: 5px;
+}
+
+.secondary-brand-button {
+	margin-left: 5px;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 40px;
+} 
+
+h4 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	margin-top: 40px;
+}
+
+a {
+	color: #005FB5;
+}
+
+a:hover {
+	color: #005FB5;
+}
+
+.contact-info-title {
+	border-bottom: 2px solid #4CAF50;
+	padding-left: 10px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+}
+
+.contact-info {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 1.3em;
+}
+
+.personal_details {
+	margin-top: 45px;
+}
+
+.button-row {
+	text-align: center;
+	margin-top: 25px;
+}
+
+form {
+	margin-top: 40px;
+	text-align: center;
+	font-size: 1.4em;
+}
+
+.left-side {
+	text-align: right;
+}
+
+.right-side {
+	text-align: left;
+}
+
+.name-input {
+	width: 34%;
+}
+
+.user-detail-input {
+	width: 70%;
+}

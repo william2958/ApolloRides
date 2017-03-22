@@ -1,0 +1,41 @@
+.trip-detail {
+	font-size: 1.3em;
+	margin-top: 10px;
+}
+
+.detail {
+	color: #9B9B9B;
+	font-size: 0.8em;
+}
+
+.right-side {
+	text-align: right;
+}
+
+.price {
+	font-size: 1.2em;
+	color: #4CAF50;
+}
+
+.cancel {
+	font-size: 1.3em;
+	color: #F44336;
+	cursor: pointer;
+}
+
+.requests {
+	font-size: 1.3em;
+	color: #005FB5;
+	cursor: pointer;
+}
+
+.view-trip {
+	margin-top: 10px;
+	font-size: 1.1em;
+	cursor: pointer;
+	color: #005FB5;
+}
+
+.view-trip:hover {
+	color: #005FB5;
+}

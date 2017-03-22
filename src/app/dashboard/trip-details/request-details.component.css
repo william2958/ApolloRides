@@ -1,0 +1,100 @@
+.backIcon {
+	vertical-align: middle;
+	fill: #2B2B2B;
+	float: left;
+	margin-left: 30px;
+	margin-top: 20px;
+	width: 30px;
+	height: 30px;
+}
+
+.backIcon:hover {
+	cursor: pointer;
+}
+
+.price {
+	color: #4CAF50;
+	float: right;
+	font-size: 2.1em;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-right: 20px;
+}
+
+h1 {
+	clear: both;
+	margin: 0 0 20px 0;
+	text-align: center;
+}
+
+.left-side {
+	text-align: left;
+	font-size: 1.6em;
+	padding-right: 20px;
+}
+
+.right-side {
+	text-align: left;
+}
+
+.trip-meta {
+	font-size: 1.3em;
+	color: #636363;
+}
+
+.trip-details {
+	color: #636363;
+	font-size: 1.1em;
+}
+
+.trip-id {
+	color: #636363;
+	font-size: 1.1em;
+	margin-top: 7px;
+}
+
+.detail-row {
+	margin-top: 25px;
+}
+
+.button-row {
+	text-align: center;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.brand-button {
+	font-size: 2em;
+}
+
+.confirm-description {
+	font-size: 1.2em;
+	text-align: center;
+	margin-top: 25px;
+}
+
+.confirm-description > p {
+	margin-top: 10px;
+}
+
+.confirm-description > button {
+	margin-top: 15px;
+}
+
+/* SMALL SCREENS */
+@media (max-width: 767px) {
+
+	.left-side {
+		text-align: center;
+	}
+
+	.right-side {
+		text-align: center;
+	}
+
+	.trip-details {
+		margin-top: 0px;
+	}
+	
+}
+

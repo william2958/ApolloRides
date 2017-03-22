@@ -1,0 +1,204 @@
+body {
+	font-family: 'Open Sans';
+	font-weight: 400;
+	font-size: 14px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: 300;
+}
+
+.error-message {
+	text-align: center;
+	color: #F44336;
+}
+
+button.brand-button {
+	background-color: #2E7D32;
+	box-shadow: 0px 2px 6px #D5D5D5, 0px 2px 6px #B8B8B8;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 3px;
+	border: 0;
+	padding: 7px 24px 7px 24px;
+}
+
+button.secondary-brand-button {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 3px;
+	border: 0;
+	padding: 7px 24px 7px 24px;
+}
+
+button.warning-brand-button {
+	background-color: #F44336;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 3px;
+	border: 0;
+	padding: 7px 24px 7px 24px;
+}
+
+button.inverse-brand-button {
+	border: 2px solid #2E7D32;
+	box-shadow: 0px 2px 6px #D5D5D5, 0px 2px 6px #B8B8B8;
+	color: #2E7D32;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 3px;
+	padding: 7px 24px 7px 24px;
+	background-color: transparent;
+}
+
+.svgIcon {
+}
+
+.mat-input-placeholder {
+	color: #9B9B9B;
+	letter-spacing: 1px;
+}
+
+.mat-input-underline {
+	border-color: #9B9B9B;
+}
+
+.mat-input-placeholder.mat-focused {
+	color: #2E7D32;
+}
+
+.mat-input-underline .mat-input-ripple {
+	background-color: #2E7D32;
+}
+
+.mat-input-placeholder.mat-float.mat-focused .mat-placeholder-required, input.mat-input-element:-webkit-autofill+.mat-input-placeholder .mat-placeholder-required {
+	color: #F44336;
+}
+
+.mat-select-trigger {
+	color: #9B9B9B;
+}
+
+.mat-select-placeholder {
+	color: #9B9B9B;
+}
+
+.mat-select-underline {
+	background-color: #9B9B9B;
+}
+
+.mat-select-arrow {
+	color: #9B9B9B;
+}
+
+.mat-select:focus:not(.mat-select-disabled) .mat-select-underline {
+	background-color: #2E7D32;
+}
+
+.mat-select:focus:not(.mat-select-disabled) .mat-select-arrow {
+	color: #2E7D32;
+}
+
+.mat-select-content, .mat-select-panel-done-animating {
+	background: #fff;
+}
+
+.mat-select-value {
+	color: black;
+}
+
+.mat-option.mat-option-disabled {
+	color: #9B9B9B;
+}
+
+/* Toastr Styles */
+
+.toast-success {
+	background-color: #9CCC65;
+	border-bottom: 3px solid #51a351;
+	opacity: 0.99;
+	border-radius: 0px;
+}
+
+#toast-container>div {
+	opacity: 0.99;
+}
+
+/* Makes the brand white even after clicking it */
+.navbar-default .navbar-brand:visited {
+	color: white;
+}
+
+
+
+
+/* LARGE DEVICES */
+@media (min-width: 1200px) {
+}
+
+/* MEDIUM DEVICES */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* SMALL DEVICES */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* EXTRA SMALL SCREENS */
+@media (min-width: 480px) and (max-width: 767px) {
+
+	body {
+		font-size: 12px;
+	}
+
+	.navbar {
+		height: 0px;
+	}
+
+	#navbarToggle {
+		background-color: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: white;
+	}
+
+}
+
+/********** XXS SCREENS **********/
+@media (max-width: 479px) {
+
+	body {
+		font-size: 12px;
+	}
+
+	.navbar {
+		height: 0px;
+	}
+
+	#navbarToggle {
+		background-color: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: white;
+	}
+
+}
+
+
+
+
+

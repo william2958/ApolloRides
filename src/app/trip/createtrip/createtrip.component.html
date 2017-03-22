@@ -1,0 +1,240 @@
+<!-- If the user is not a first time driver -->
+<div class="container" *ngIf="!firstTime">
+
+	<h1>Create Trip</h1>
+
+	<form #createTripForm="ngForm" novalidate>
+
+		<div class="error-message" *ngIf="createFormError">
+			{{createFormError}}
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>From</h2>
+				<div ngModelGroup="fromLocation" #locationGroup="ngModelGroup">
+				  <div class="form-group">
+				    <md-input-container>        
+				      <input mdInput [(ngModel)]="fromMetadata" name="fromMetadata" id="fromMetadata" type="text" placeholder="{{fromDetailsPlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+
+				  <div class="form-group">
+				    <md-input-container>        
+				      <input mdInput [(ngModel)]="fromCity" name="fromCity" id="fromCity" type="text" placeholder="{{fromCityPlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+
+				  <div class="form-group">
+				    <md-input-container>
+				      <input mdInput [(ngModel)]="fromState" name="fromState" id="fromState" type="text" placeholder="{{fromStatePlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+
+				  <div class="form-group">
+				    <md-input-container>
+				      <input mdInput [(ngModel)]="fromCountry" name="fromCountry" id="fromCountry" type="text" placeholder="{{fromCountryPlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+				</div>
+			</div>
+
+	  
+			<div class="col-sm-6">
+				<h2>Destination</h2>
+				<div ngModelGroup="toLocation" #locationGroup="ngModelGroup">
+				  <div class="form-group">
+				    <md-input-container>
+				      <input mdInput [(ngModel)]="toMetadata" name="toMetadata" id="toMetadata" type="text" placeholder="{{toDetailsPlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+
+				  <div class="form-group">
+				    <md-input-container>
+				      <input mdInput [(ngModel)]="toCity" name="toCity" id="toCity" type="text" placeholder="{{toCityPlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+
+				  <div class="form-group">
+				    <md-input-container>
+				      <input mdInput [(ngModel)]="toState" name="toState" id="toState" type="text" placeholder="{{toStatePlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+
+				  <div class="form-group">
+				    <md-input-container>
+				      <input mdInput [(ngModel)]="toCountry" name="toCountry" id="toCountry" type="text" placeholder="{{toCountryPlaceholder}}" required/>
+				    </md-input-container>
+				  </div>
+				</div>
+			</div>
+	  </div>
+
+	  <h2>Trip Details</h2>
+	  <div class="form-group">
+	    <md-input-container class="trip_details">
+	      <input mdInput [(ngModel)]="numPassengers" name="numPassengers" id="numPassengers" type="number" placeholder="{{numPassengersPlaceholder}}" required/>
+	    </md-input-container>
+	  </div>
+
+	  <div class="form-group">
+	    <md-input-container class="trip_details">
+	      <input mdInput [(ngModel)]="date" name="date" id="date" type="datetime-local" placeholder="{{datePlaceholder}}" required/>
+	    </md-input-container>
+	  </div>
+
+	  <div class="form-group">
+	    <md-input-container class="trip_details">
+	      <input mdInput [(ngModel)]="price" name="price" id="price" type="number" placeholder="{{pricePlaceholder}}" required/>
+	    </md-input-container>
+	  </div>
+
+	  <div class="form-group">
+	    <md-input-container class="trip_details">
+	      <input mdInput [(ngModel)]="tripDetails" name="tripDetails" id="tripDetails" type="text" placeholder="{{detailsPlaceholder}}"/>
+	    </md-input-container>
+	  </div>
+
+	  <div class="button-row">
+		  <button class="warning-brand-button" (click)="cancel()">Cancel</button>
+		  <button class="secondary-brand-button" (click)="checkError(createTripForm)" type="submit">Create</button>
+	  </div>
+
+	  <simple-modal #confirmModal closeOnBodyClick='false' elementId="confirmModal" title="Confirm this posting?" bodyHeight="medium">
+		<div class="row detail-row">
+			<div class="col-sm-2">
+				
+			</div>
+			<div class="col-sm-4 left-side">
+				From:
+			</div>
+			<div class="col-sm-6 right-side">
+				<div class="trip-meta">{{fromMetadata}}</div>
+				<div class="trip-details-city">{{fromCity}}, {{fromState}}</div>
+			</div>
+		</div>
+
+		<div class="row detail-row">
+			<div class="col-sm-2">
+				
+			</div>
+			<div class="col-sm-4 left-side">
+				To:
+			</div>
+			<div class="col-sm-6 right-side">
+				<div class="trip-meta">{{toMetadata}}</div>
+				<div class="trip-details-city">{{toCity}}, {{toState}}</div>
+			</div>
+		</div>
+
+		<div class="row detail-row">
+			<div class="col-sm-2">
+				
+			</div>
+			<div class="col-sm-4 left-side">
+				At:
+			</div>
+			<div class="col-sm-6 right-side">
+				<!-- <div class="trip-meta">{{hours}}:{{minutes}} {{pm}}</div> -->
+				<div class="trip-details">{{date | date : 'fullDate'}}</div>
+			</div>
+		</div>
+
+		<div class="row detail-row">
+			<div class="col-sm-2">
+				
+			</div>
+			<div class="col-sm-4 left-side">
+				Trip Details:
+			</div>
+			<div class="col-sm-6 right-side">
+				<div class="trip-details">{{tripDetails}}</div>
+			</div>
+		</div>
+
+		<div class="row detail-row">
+			<div class="col-sm-2">
+				
+			</div>
+			<div class="col-sm-4 left-side">
+				Trip Price:
+			</div>
+			<div class="col-sm-6 right-side">
+				<div class="trip-details">{{price}}</div>
+			</div>
+		</div>
+
+		<div class="row detail-row">
+			<div class="col-sm-2">
+				
+			</div>
+			<div class="col-sm-4 left-side">
+				Number of Passengers:
+			</div>
+			<div class="col-sm-6 right-side">
+				<div class="trip-details">{{numPassengers}}</div>
+			</div>
+		</div>
+
+		<div class="button-row-2">
+			<button class="secondary-brand-button" (click)="create(createTripForm.value)">Confirm Listing</button>
+		</div>
+
+	</simple-modal>
+
+	</form>
+</div>
+
+
+
+
+
+
+
+
+<!-- If the user is a first time driver -->
+
+
+
+<div class="container" *ngIf="firstTime">
+
+	<h1>First Time Driver</h1>
+	<p class="driver-details">First Time Driving? Please enter your car details to make it easier for riders to find you. You can edit these values later in your profile.</p>
+
+	<form #carDetailsForm="ngForm" novalidate>
+
+		<div class="error-message" *ngIf="carDetailsFormError">
+			{{carDetailsFormError}}
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<md-input-container class="car-detail-input">        
+					<input mdInput [(ngModel)]="car_model" name="car_model" id="car_model" type="text" placeholder="Car Model" required/>
+				</md-input-container>
+			</div>
+
+			<div class="form-group">
+				<md-input-container class="car-detail-input">        
+					<input mdInput [(ngModel)]="license_plate" name="license_plate" id="license_plate" type="text" placeholder="License Plate" required/>
+				</md-input-container>
+			</div>
+		</div>
+
+		<div class="button-row-2">
+			<button class="secondary-brand-button" [disabled]="carDetailsForm.invalid" (click)="updateCarDetails(carDetailsForm.value)">Confirm</button>
+		</div>
+
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+

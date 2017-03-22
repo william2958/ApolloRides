@@ -1,0 +1,82 @@
+<div class="container">
+	<div class="selection-bar row">
+		<div class="col-xs-6 selection-option1" [ngClass]="{'selected': requests }" (click)="showRequests()">
+			Requests
+		</div>
+		<div class="col-xs-6 selection-option2" [ngClass]="{'selected': !requests }" (click)="showListings()">
+			Listings
+		</div>
+	</div>
+
+	<div *ngIf="requests">
+
+		<div *ngIf="trips_accepted?.length > 0">
+			<h5>Accepted Requests</h5>
+			<hr>
+			<div class="row list-row" *ngFor="let trip of trips_accepted">
+				<my-trip-thumbnail (cancelRequest)="confirmCancelRequest($event)" [trip]="trip" [request]="true" [listing]="false"></my-trip-thumbnail>
+			</div>
+		</div>
+
+		<div *ngIf="trips_requested?.length > 0">
+			<h5>Active Requests</h5>
+			<hr>
+			<div class="row list-row" *ngFor="let trip of trips_requested">
+				<my-trip-thumbnail (cancelRequest)="confirmCancelRequest($event)" [trip]="trip" [request]="true" [listing]="false"></my-trip-thumbnail>
+			</div>
+		</div>
+
+		<div *ngIf="past_trips_requested?.length > 0">
+			<h5>Past Requests</h5>
+			<hr>
+			<div class="row list-row" *ngFor="let trip of past_trips_requested">
+				<my-trip-thumbnail [trip]="trip" [request]="true" [listing]="false" [expired]="true"></my-trip-thumbnail>
+			</div>
+		</div>
+
+		<!-- If the user doesn't have any requests -->
+		<div *ngIf="trips_accepted?.length == 0 && trips_requested?.length == 0 && past_trips_requested?.length == 0" class="no-trips">
+			<p>You haven't requested any trips yet!</p>
+			<a class="find-trip-link" [routerLink]="['/']">Find a trip now.</a>
+		</div>
+
+	</div>
+
+	<div *ngIf="!requests">
+
+		<div *ngIf="trips_listed?.length > 0">
+			<h5>Active Listings</h5>
+			<hr>
+			<div class="row list-row" *ngFor="let trip of trips_listed">
+				<my-trip-thumbnail [trip]="trip" [request]="false" [listing]="false"></my-trip-thumbnail>
+			</div>
+		</div>
+
+
+		<div *ngIf="past_trips_driven?.length > 0">
+			<h5>Past Listings</h5>
+			<hr>
+			<div class="row list-row" *ngFor="let trip of past_trips_driven">
+				<my-trip-thumbnail [trip]="trip" [request]="false" [listing]="false" [expired]="true"></my-trip-thumbnail>
+			</div>
+		</div>
+
+		<!-- If the user doesn't have any requests -->
+		<div *ngIf="trips_listed?.length == 0 && past_trips_driven?.length == 0" class="no-trips">
+			<p>You haven't created any trips yet!</p>
+			<a class="find-trip-link" [routerLink]="['/', 'trip', 'createtrip']">Create a listing now.</a>
+		</div>
+
+	</div>
+</div>
+
+
+
+<simple-modal #confirmCancelModal closeOnBodyClick='false' elementId="confirmCancelModal" title="Cancel this Request?" color="red">
+	<div class="confirm-description">
+		<p>Are you sure you want to cancel this request?</p>
+		<button (click)="cancelRequest(event)" class="warning-brand-button">Confirm Request</button>
+	</div>
+</simple-modal>
+
+
