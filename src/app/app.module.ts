@@ -23,6 +23,8 @@ import { NavBarService } from './nav/navbar.service';
 
 // Passwords
 import { ChangePasswordComponent } from './user/password/changepassword.component';
+// Confirm Email
+import { ConfirmEmailComponent } from './user/confirm/confirmemail.component';
 
 import { CommonRideshareModule } from './common/common.module';
 
@@ -48,6 +50,7 @@ let toastr : Toastr = window['toastr'];
 		LandingComponent,
 		NavBarComponent,
 		ChangePasswordComponent,
+		ConfirmEmailComponent,
 		Error404Component
 	],
 	providers: [

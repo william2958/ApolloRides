@@ -149,6 +149,16 @@ export class AuthService {
 			}).catch(this.handleError);
 	}
 
+	confirmEmail(confirm_token: string) {
+		let headers = new Headers({ 'Content-Type': 'application/json'});
+		let options = new RequestOptions({headers: headers});
+		return this.http.post(`${this.config.apiEndpoint}/confirm_email
+			?confirm_token=${confirm_token}`, options)
+			.do((resp: any) => {
+				console.log("Email confirmed in service!");
+			}).catch(this.handleError);
+	}
+
 	private handleError (error: Response | any) {
 	  // In a real world app, you might use a remote logging infrastructure
 	  let err = JSON.parse(error._body)

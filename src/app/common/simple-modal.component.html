@@ -4,7 +4,7 @@
 			<div class="modal-header" [style.background-color]="getHeaderBackground()">
 				<!-- <img class="logo" src="images/friday-square.svg"> -->
 				<div class="title">{{title}}</div>
-				<img (click)="closeModal()" class="cancelIcon svgIcon" src="../../images/cancel.svg"/>
+				<img (click)="closeModal()" class="cancelIcon svgIcon" src="images/cancel.svg"/>
 			</div>
 			<div class="modal-body" [style.height]="getHeight()">
 				<ng-content></ng-content>
