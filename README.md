@@ -6,6 +6,8 @@ This project was initially a way for people to find rideshares across the countr
 
 Platform was built with Angular 2 Front-end with a Ruby-on-Rails server handling the backend, recording data into a MongoDB database. 
 
+DNS services provided by AWS Route 53.
+
 Angular frontend and Rails server were hosted on AWS and the MongoDB was hosted on a separate cloud provider - mLab.
 
 Project was scrapped in July, 2017.
