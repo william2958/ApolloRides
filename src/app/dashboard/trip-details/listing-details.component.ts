@@ -12,9 +12,9 @@ import { AuthService } from '../../user/auth.service';
 
 export class ListingDetailsComponent implements OnInit {
 
-	trip: any;
-	user_requests: any;
-	accepted_users: any;
+	trip: any = [];
+	user_requests: any = [];
+	accepted_users: any = [];
 	trip_details: any;
 	expired: boolean;
 
@@ -76,7 +76,7 @@ export class ListingDetailsComponent implements OnInit {
 				this.accepted_users.push(this.currentUser);
 				// Remove the accepted user from the requests array
 				for (var i=0; i < this.user_requests.length; i++) {
-					if (this.user_requests[i].id == this.currentUser.id) {
+					if (this.user_requests[i].id == this.currentUser._id) {
 						this.user_requests.splice(i, 1);
 						console.log("index was: ", i)
 						break;
@@ -125,7 +125,7 @@ export class ListingDetailsComponent implements OnInit {
 				this.errorMessage = err;
 			}
 		)
-		
+
 	}
 
 	back() {

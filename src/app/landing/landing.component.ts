@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
+import { SpinnerService } from '../common/spinner.service';
 
 @Component({
 	templateUrl: './landing.component.html',
@@ -22,11 +23,6 @@ export class LandingComponent implements OnInit {
 		var date = new Date(formValues.date);
 		console.log("Date 1 is: ", formValues.date);
 		this.router.navigate(['trip', 'searchtrips', formValues.fromLocation.toLocaleLowerCase(), formValues.toLocation.toLocaleLowerCase(), date.getTime()]);
-	}
-
-	cancel() {
-		// console.log(this.containerEl)
-		
 	}
 
 	checkError(formValues) {

@@ -38,7 +38,7 @@
 
 	<hr>
 
-	<div *ngIf="todays_trips.length > 0">
+	<div *ngIf="todays_trips?.length > 0">
 		<h2>Trips on {{searchDate | date: 'fullDate'}}</h2>
 		<hr>
 		<div *ngFor="let trip of todays_trips">
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 
-	<div *ngIf="future_trips.length > 0">
+	<div *ngIf="future_trips?.length > 0">
 		<h2>Trips after searched date</h2>
 		<hr>
 		<div *ngFor="let trip of future_trips">
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 
-	<div *ngIf="yesterday_trips.length > 0">
+	<div *ngIf="yesterday_trips?.length > 0">
 		<h2>Trips before searched date</h2>
 		<hr>
 		<div *ngFor="let trip of yesterday_trips">
@@ -62,7 +62,7 @@
 		</div>
 	</div>
 
-	<div *ngIf="trips.length == 0" class="no-results">
+	<div *ngIf="trips?.length == 0" class="no-results">
 		There are no trips that meet your search criteria!
 	</div>
 

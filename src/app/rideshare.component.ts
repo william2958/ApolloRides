@@ -5,6 +5,7 @@ import { CookieService } from 'angular2-cookie/core';
 @Component({
 	selector: 'rideshare',
 	template: `
+		<spinner></spinner>
 		<nav-bar></nav-bar>
 		<router-outlet></router-outlet>
 	`

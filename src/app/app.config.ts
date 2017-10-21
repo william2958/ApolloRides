@@ -8,5 +8,5 @@ export interface IAppConfig {
 
 export const AppConfig: IAppConfig = {
 	apiEndpoint: "http://localhost:3000"
-	// apiEndpoint: "http://split-rails-beanstalk-env.wzmkzbvpcf.us-west-2.elasticbeanstalk.com"
+	// apiEndpoint: "https://api.apollorides.com"
 };

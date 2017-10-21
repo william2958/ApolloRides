@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ITrip } from '../shared/index';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../index';
+import { TOASTR_TOKEN } from '../../common/toastr.service';
+import { SpinnerService } from '../../common/spinner.service';
 
 @Component({
 	templateUrl: './findtrip.component.html',
@@ -33,10 +35,13 @@ export class FindTripComponent implements OnInit {
 	constructor (
 		private route: ActivatedRoute, 
 		private tripService: TripService, 
-		private router: Router
+		private router: Router,
+		private spinnerService: SpinnerService,
+		@Inject(TOASTR_TOKEN) private toastr: any 
 	) {}
 
 	ngOnInit() {
+		this.spinnerService.spinnerOff();
 		var parameters = <any>this.route.params
 
 		console.log("First cached value: ", )
@@ -96,17 +101,23 @@ export class FindTripComponent implements OnInit {
 		let date:Date = new Date(formValues.date);
 		console.log(date.getTime());
 		var epochDate = date.getTime().toString();
-		if (this.tripService.cached != formValues.fromLocation+formValues.toLocation+date) {
+		console.log("Cached value: ", this.tripService.cached);
+		console.log("Checking with: ", formValues.fromLocation+formValues.toLocation+epochDate)
+		if (this.tripService.cached != formValues.fromLocation+formValues.toLocation+epochDate) {
 			// Get New data
 			this.router.navigate(['/', 'trip', 'searchtrips', formValues.fromLocation, formValues.toLocation, epochDate]);
 			console.log("Getting fresh data");
+			this.spinnerService.spinnerOn();
 			this.tripService.searchTrips(formValues.fromLocation, formValues.toLocation, epochDate).subscribe(
 				(data: any) => {
+					this.spinnerService.spinnerOff();
 					this.trips = JSON.parse(data._body).results;
 					this.sortTrips(epochDate);
 					this.reSort();
 				}, (err) => {
+					this.spinnerService.spinnerOff();
 					console.log("Could not find trips");
+					this.toastr.error(err);
 				}
 			)
 		} else {

@@ -138,7 +138,10 @@ button.inverse-brand-button {
 	color: white;
 }
 
-
+/* For the progress spinner */
+.mat-progress-circle.mat-accent path, .mat-progress-spinner.mat-accent path, .mat-spinner.mat-accent path {
+	stroke: blue;
+}
 
 
 /* LARGE DEVICES */

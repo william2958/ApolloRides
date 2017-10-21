@@ -38,6 +38,11 @@ export class RequestDetailsComponent implements OnInit {
 		if (this.trip.date < (new Date).getTime()/1000) {
 			this.expired = true;
 		}
+
+		if (this.trip.accepted_users.indexOf(this.authService.currentUser.id) > -1) {
+			this.expired = true;
+		}
+
 	}
 
 	confirmCancel() {

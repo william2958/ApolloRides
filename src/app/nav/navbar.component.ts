@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JQ_TOKEN } from '../common/jQuery.service';
 import { NavBarService } from './navbar.service';
 import { TOASTR_TOKEN } from '../common/toastr.service';
+import { SpinnerService } from '../common/spinner.service';
 
 @Component({
 	selector: 'nav-bar',
@@ -42,9 +43,10 @@ export class NavBarComponent implements OnInit{
 	facebookPlaceholder: string;
 
 	constructor (
-		private auth:AuthService, 
+		private auth: AuthService, 
 		private router: Router, 
 		private navbarService: NavBarService,
+		private spinnerService: SpinnerService,
 		@Inject(JQ_TOKEN) private $: any,
 		@Inject(TOASTR_TOKEN) private toastr: any
 	){}
@@ -75,9 +77,11 @@ export class NavBarComponent implements OnInit{
 	}
 
 	login(formValues) {
+		this.spinnerService.spinnerOn();
 		this.auth.loginUser(formValues.userName, formValues.password)
 			.subscribe(
 				(data) => {
+					this.spinnerService.spinnerOff();
 					console.log("Navbar logged in.")
 					this.$ ( this.loginEl.containerEl.nativeElement ).modal('hide');
 					this.$ ( this.loginGuardEl.containerEl.nativeElement ).modal('hide');
@@ -85,6 +89,7 @@ export class NavBarComponent implements OnInit{
 					this.showLoginModal = false;
 					this.currentUser = this.auth.getUser();
 				}, (err) => {
+					this.spinnerService.spinnerOff();
 					this.loginInvalid = true;
 					this.formErrorMessage = err;
 				}
@@ -131,6 +136,7 @@ export class NavBarComponent implements OnInit{
 			// Add additional elsifs to further check the inputs
 			else {
 				let formValues = form.value;
+				this.spinnerService.spinnerOn();
 				this.auth.signUp(
 					formValues.email,
 					formValues.first_name,
@@ -140,10 +146,12 @@ export class NavBarComponent implements OnInit{
 					formValues.facebook_link)
 					.subscribe(
 						(data) => {
+							this.spinnerService.spinnerOff();
 							console.log("Sign up Successful");
 							this.$ ( this.signupEl.containerEl.nativeElement ).modal('hide');
 							this.toastr.success("Sign Up Successful!", "Please check your email for the confirmation link.")
 						}, (err) => {
+							this.spinnerService.spinnerOff();
 							console.log("Sign up Unsuccessful");
 							this.signupInvalid = true;
 							this.formErrorMessage = err;
@@ -176,12 +184,15 @@ export class NavBarComponent implements OnInit{
 	}
 
 	forgotPassword(form) {
+		this.spinnerService.spinnerOn();
 		this.auth.forgotPassword(form.email).subscribe(
 			(data) => {
+				this.spinnerService.spinnerOff();
 				console.log("Forgot password email sent.");
 				this.$ ( this.forgotPasswordEl.containerEl.nativeElement ).modal('hide');
 				this.toastr.success("Reset Password Email Sent!", "Please check your email for a reset link.")
 			}, (err) => {
+				this.spinnerService.spinnerOff();
 				console.log("Unable to send the reset email.");
 				this.forgotPasswordEmailInvalid = true;
 				this.toastr.error(err);
@@ -197,10 +208,6 @@ export class NavBarComponent implements OnInit{
 	showSignupModalFunction() {
 		this.$ ( this.signupEl.containerEl.nativeElement ).modal('show');
 	}
-
-	// if (this.showLoginModal) {
-	// 	this.$ ( this.loginEl.loginEl.nativeElement ).modal('show');
-	// }
 	
 
 }

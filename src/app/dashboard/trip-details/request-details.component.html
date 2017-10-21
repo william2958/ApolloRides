@@ -43,7 +43,7 @@
 			At:
 		</div>
 		<div class="col-sm-6 right-side">
-			<div class="trip-details">{{trip.date | date : 'fullDate'}}</div>
+			<div class="trip-details">{{trip.date*1000 | date : 'yMdjm'}}</div>
 		</div>
 	</div>
 
@@ -70,7 +70,7 @@
 			<div class="trip-meta">{{driver.first_name}} {{driver.last_name}}</div>
 			<div class="trip-details">Rating: {{driver.rating}}</div>
 			<div *ngIf="driver?.facebook_link" class="trip-details"><a [href]="driver?.facebook_link">Facebook</a></div>
-			<div *ngIf="driver?.phone_number" class="trip-details">Phone number: {{driver?.phone_number}}</div>
+			<div *ngIf="driver?.phone_number" class="trip-details">Phone number: {{driver?.phone_number | phone}}</div>
 			<div *ngIf="driver?.email" class="trip-details">Email: {{driver?.email}}</div>
 		</div>
 	</div>

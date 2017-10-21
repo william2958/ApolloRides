@@ -1,26 +1,32 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { SimpleModalComponent } from './simple-modal.component';
-import { ModalTriggerDirective } from './modal-trigger.directive';
+import { SimpleModalComponent } from './index';
+import { ModalTriggerDirective } from './index';
 import { MaterialModule } from '@angular/material';
-import { PhoneNumberPipe } from './phonenumber.pipe';
-import { LongDatePipe } from './longdate.pipe';
+import { PhoneNumberPipe } from './index';
+import { SpinnerComponent } from './spinner.component';
+import { SpinnerService } from './spinner.service';
 
 @NgModule ({
+	imports: [
+		CommonModule,
+		MaterialModule
+	],
 	declarations: [
 		SimpleModalComponent,
 		ModalTriggerDirective,
 		PhoneNumberPipe,
-		LongDatePipe
+		SpinnerComponent
 	],
-	imports: [
-		MaterialModule
+	providers: [
+		SpinnerService
 	],
 	exports: [
 		SimpleModalComponent,
 		ModalTriggerDirective,
 		PhoneNumberPipe,
-		LongDatePipe
+		SpinnerComponent
 	]
 })
 

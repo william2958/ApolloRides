@@ -10,21 +10,21 @@ import { tripRoutes } from './trip/trip.routes';
 import { dashboardRoutes } from './dashboard/dashboard.routes';
 
 
-export const appRoutes:Routes = [
-	{ path: '', component: LandingComponent },
-	{ 
-		path: 'dashboard', 
-		// children: dashboardRoutes,
-		
-		loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
-		canActivate: [AuthGuard]
-	},
-	{ 
-		path: 'trip', 
-		// children: tripRoutes
-		loadChildren: 'app/trip/trip.module#TripModule'
-	},
-	{ path: 'changepassword/:token', component: ChangePasswordComponent },
-	{ path: 'confirm_email/:token', component: ConfirmEmailComponent },
-	{ path: '**', component: Error404Component }
-]
+export const appRoutes: Routes = [
+  { path: '', component: LandingComponent },
+  {
+    path: 'dashboard',
+    // children: dashboardRoutes,
+
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'trip',
+    // children: tripRoutes
+    loadChildren: 'app/trip/trip.module#TripModule'
+  },
+  { path: 'changepassword/:token', component: ChangePasswordComponent },
+  { path: 'confirm_email/:token', component: ConfirmEmailComponent },
+  { path: '**', component: Error404Component }
+];

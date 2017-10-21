@@ -28,6 +28,8 @@ export class SimpleModalComponent {
 			return '340px';
 		} else if (this.bodyHeight =='small') {
 			return '200px';
+		} else if (this.bodyHeight == 'extralarge') {
+			return '550px';
 		} else {
 			return '280px';
 		}
